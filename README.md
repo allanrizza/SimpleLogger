@@ -45,7 +45,7 @@ class Program
 ```
 
 ## 📝 Licença
-Este projeto está licenciado sob a **MIT License**. Sinta-se à vontade para usá-lo e modificá-lo conforme necessário.
+Este projeto está licenciado sob a **MIT License**. Sinta-se à vontade para usá-lo e modificá-lo conforme necessário. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
 ---
 🔹 **Autor:** Allan Gilbert  
