@@ -12,16 +12,12 @@ namespace SimpleLogger
         private static readonly string logDirectory = "Logs";
         private static readonly string logFilePath = Path.Combine(logDirectory, "log.txt");
 
-        static Logger()
-        {
-            if (!Directory.Exists(logDirectory))
-                Directory.CreateDirectory(logDirectory);
-        }
-
         public static void Log(string message)
         {
             try
             {
+                if (!Directory.Exists(logDirectory))
+                    Directory.CreateDirectory(logDirectory);
                 string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ---> {message}";
                 File.AppendAllText(logFilePath, logEntry + Environment.NewLine);
             }
