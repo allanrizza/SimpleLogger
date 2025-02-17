@@ -39,9 +39,9 @@ class Program
 
 ### 📝 Exemplo de saída no `Logs/log.txt`:
 ```
-2025-02-16 10:15:30 - Aplicação iniciada.
-2025-02-16 10:15:31 - Processando dados...
-2025-02-16 10:15:32 - Aplicação finalizada.
+2025-02-16 10:15:30 ---> Aplicação iniciada.
+2025-02-16 10:15:31 ---> Processando dados...
+2025-02-16 10:15:32 ---> Aplicação finalizada.
 ```
 
 ## 📝 Licença
