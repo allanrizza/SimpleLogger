@@ -6,8 +6,8 @@ O **SimpleLogger** é um componente leve e fácil de usar para geração de logs
 ## 🚀 Funcionalidades
 - 📂 Geração automática da pasta `Logs`
 - 📝 Registro de logs com data e hora
-- 🔄 Escrita automática em arquivo `log.txt`
-- 🛠 Tratamento de erros ao gravar logs
+- 💾 Escrita automática em arquivo `log.txt`
+- 🔄 Rotação de Logs: Caso o arquivo log.txt exceda 300MB, ele é movido para um novo arquivo com o nome formatado como log_yyyy-MM-dd_HH-mm-ss.txt, baseado na data e hora atuais.
 
 ## 📦 Instalação
 ### 1️⃣ Adicionar o projeto ao seu código
@@ -42,6 +42,12 @@ class Program
 2025-02-16 10:15:30 ---> Aplicação iniciada.
 2025-02-16 10:15:31 ---> Processando dados...
 2025-02-16 10:15:32 ---> Aplicação finalizada.
+```
+
+### 📝 Exemplo de rotação de logs:
+Caso o arquivo log.txt ultrapasse 300MB, o arquivo será movido para um novo arquivo de log, nomeado com a data e hora atuais, como por exemplo:
+```
+log_2025-02-16_10-15-30.txt
 ```
 
 ## 📝 Licença
