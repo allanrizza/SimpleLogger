@@ -11,12 +11,14 @@ namespace SimpleLogger
     {
         private static readonly string _logDirectory = "Logs";
         private static readonly string _logFilePath = Path.Combine(_logDirectory, "log.txt");
+        private const long MaxLogFileSize = 300 * 1024 * 1024;
 
         public static void Log(string message)
         {
             try
             {
                 CreateLogsDirectoryIfNotExists();
+                RotateLogIfNecessary();
                 string logEntry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ---> {message}";
                 File.AppendAllText(_logFilePath, logEntry + Environment.NewLine);
             }
@@ -38,6 +40,19 @@ namespace SimpleLogger
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao criar diretório de Logs: {ex.Message}");
+            }
+        }
+
+        private static void RotateLogIfNecessary()
+        {
+            if(File.Exists(_logFilePath))
+            {
+                FileInfo logFileInfo = new FileInfo(_logFilePath);
+                if(logFileInfo.Length >= MaxLogFileSize)
+                {
+                    string archiveName = Path.Combine(_logDirectory, $"log_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.txt");
+                    File.Move(_logFilePath, archiveName);
+                }
             }
         }
     }
