@@ -26,7 +26,7 @@ namespace SimpleLogger
             }
         }
 
-        public static void CreateLogsDirectoryIfNotExists()
+        private static void CreateLogsDirectoryIfNotExists()
         {
             try
             {
