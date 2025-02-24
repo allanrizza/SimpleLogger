@@ -50,6 +50,10 @@ Caso o arquivo log.txt ultrapasse 300MB, o arquivo será movido para um novo arq
 log_2025-02-16_10-15-30.txt
 ```
 
+## 📌 Futuras implementações
+- Suporte a diferentes níveis de log
+- Formatos como JSON
+
 ## 📝 Licença
 Este projeto está licenciado sob a **MIT License**. Sinta-se à vontade para usá-lo e modificá-lo conforme necessário. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
