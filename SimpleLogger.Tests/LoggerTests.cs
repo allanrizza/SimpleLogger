@@ -44,7 +44,7 @@ namespace SimpleLogger.Tests
                 Directory.Delete(_logDirectory, true);
 
             //AÇÃO
-            Logger.Log("Testando criação de diretório");
+            Logger.Log(LogLevel.DEBUG, "Testando criação de diretório");
 
             //AFIRMAÇÃO
             Assert.True(Directory.Exists(_logDirectory));
@@ -58,7 +58,7 @@ namespace SimpleLogger.Tests
                 File.Delete(_logFilePath);
 
             //AÇÃO
-            Logger.Log("Testando a criação de arquivo de log");
+            Logger.Log(LogLevel.DEBUG, "Testando a criação de arquivo de log");
 
             //AFIRMAÇÃO
             Assert.True(File.Exists(_logFilePath), "O arquivo de log não foi criado.");
@@ -69,7 +69,7 @@ namespace SimpleLogger.Tests
         {
             //ARRANJO
             string logMessage = "Mensagem de log de teste";
-            Logger.Log(logMessage);
+            Logger.Log(LogLevel.DEBUG, logMessage);
 
             //AÇÃO
             string logContent = File.ReadAllText(_logFilePath);
@@ -86,12 +86,24 @@ namespace SimpleLogger.Tests
             File.WriteAllBytes(_logFilePath, new byte[MaxLogSize + 1]);
 
             //AÇÃO
-            Logger.Log("Teste de rotação por tamanho;");
+            Logger.Log(LogLevel.DEBUG, "Teste de rotação por tamanho;");
 
             //AFIRMAÇÃO
             Assert.True(File.Exists(_logFilePath), "O novo arquivo de log não foi criado após a rotação.");
             var archivedLogs = Directory.GetFiles(_logDirectory, "log_*.txt");
             Assert.True(archivedLogs.Length > 0, "Nenhum arquivo de log foi arquivado corretamente.");
+        }
+
+        [Fact]
+        public void Log_ShouldRespectMinLogLevel()
+        {
+            Logger.SetMinLogLevel(LogLevel.ERROR);
+            Logger.Log(LogLevel.INFO, "This should be ignored");
+            Logger.Log(LogLevel.ERROR, "This should be logged");
+
+            string logContent = File.ReadAllText(_logFilePath);
+            Assert.DoesNotContain("This should be ignored", logContent);
+            Assert.Contains("This should be logged", logContent);
         }
     }
 }

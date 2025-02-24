@@ -12,9 +12,18 @@ namespace SimpleLogger
         private static readonly string _logDirectory = "Logs";
         private static readonly string _logFilePath = Path.Combine(_logDirectory, "log.txt");
         private const long MaxLogFileSize = 300 * 1024 * 1024;
+        private static LogLevel _minLogLevel = LogLevel.DEBUG;
 
-        public static void Log(string message)
+        public static void SetMinLogLevel(LogLevel level)
         {
+            _minLogLevel = level;
+        }
+
+        public static void Log(LogLevel level, string message)
+        {
+            if (level < _minLogLevel)
+                return;
+
             try
             {
                 CreateLogsDirectoryIfNotExists();
